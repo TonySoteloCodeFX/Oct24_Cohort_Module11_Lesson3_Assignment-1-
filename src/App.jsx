@@ -1,25 +1,27 @@
 import { Component } from "react";
 import CharacterList from "./components/CharacterList";
+import CharacterDetails from "./components/CharacterDetails";
+import '../src/styles/mainApp.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCharacterID: null,
+      selectedCharacter: null,
     };
   }
 
-  handleCharacterSelect = (characterId) => {
-    this.setState({ selectedCharacterID: characterId });
+  handleCharacterSelect = (character) => {
+    this.setState({ selectedCharacter: character });
   };
 
   render() {
-    const { selectedCharacterID } = this.state;
+    const { selectedCharacter } = this.state;
 
     return (
-      <section className="app-container">
-        <h1>Pokémon</h1>
-        {selectedCharacterID !== null && <p>Selected Pokémon ID: {selectedCharacterID}</p>}
+      <section className="mainApp" style={{ padding: "20px" }}>
+        <div className="logo"></div>
+        <CharacterDetails character={selectedCharacter} />
         <CharacterList onCharacterSelect={this.handleCharacterSelect} />
       </section>
     );
